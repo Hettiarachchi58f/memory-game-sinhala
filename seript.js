@@ -629,46 +629,48 @@ function handleBackButton() {
   }
 }
 
-// On Page Load
-window.onload = () => {
+// පැරණි window.onload ශ්‍රිතය ඉවත් කර මෙය යොදන්න
+window.onload = function() {
   const splash = document.getElementById('splash');
   const loadingBar = document.querySelector('.loading-bar');
   const loadingPercentage = document.querySelector('.loading-percentage');
   
+  // පූර්ණ කිරීමේ ප්‍රතිශතය
   let progress = 0;
-  const loadingInterval = setInterval(() => {
-    progress += Math.random() * 10;
+  
+  // ලෝඩින් ප්‍රගතිය පෙන්වන අන්තරාලය
+  const loadingInterval = setInterval(function() {
+    progress += 10 + Math.floor(Math.random() * 10);
+    
     if (progress > 100) progress = 100;
     
-    loadingBar.style.width = `${progress}%`;
-    loadingPercentage.textContent = `${Math.floor(progress)}%`;
+    loadingBar.style.width = progress + '%';
+    loadingPercentage.textContent = progress + '%';
     
+    // විවිධ ලෝඩින් පණිවිඩ
     const messages = [
       "පද්ධතිය පූරණය වෙමින්...",
-      "කාඩ්පත් සූදානම් කරමින්...",
+      "කාඩ්පත් සකසමින්...",
       "තේමා පටිගත කරමින්...",
-      "ස්කෝර් ලබා ගැනීම...",
-      "සූදානම් වෙමින්..."
+      "ස්කෝර් පිටුව සූදානම් කරමින්...",
+      "ක්‍රීඩාව සූදානම්!"
     ];
     
-    if (progress < 30) {
-      document.querySelector('.loading-message').textContent = messages[0];
-    } else if (progress < 50) {
-      document.querySelector('.loading-message').textContent = messages[1];
-    } else if (progress < 70) {
-      document.querySelector('.loading-message').textContent = messages[2];
-    } else if (progress < 90) {
-      document.querySelector('.loading-message').textContent = messages[3];
-    } else {
-      document.querySelector('.loading-message').textContent = messages[4];
-    }
+    const messageIndex = Math.min(Math.floor(progress / 25), messages.length - 1);
+    document.querySelector('.loading-message').textContent = messages[messageIndex];
     
+    // 100% පිරී ඇති විට
     if (progress >= 100) {
       clearInterval(loadingInterval);
-      splash.classList.add('fade-out');
       
-      setTimeout(() => {
-        splash.remove();
+      // ලෝඩින් තිරය අතුරුදහන් කිරීම
+      splash.style.opacity = '0';
+      splash.style.transition = 'opacity 0.5s ease';
+      
+      setTimeout(function() {
+        splash.style.display = 'none';
+        
+        // ක්‍රීඩාව ආරම්භ කිරීම
         initGame();
       }, 500);
     }
@@ -676,12 +678,22 @@ window.onload = () => {
 };
 
 function initGame() {
+  // ප්‍රාථමික සැකසුම්
   initSettings();
   initToggles();
-  renderLeaderboard();
-  createBoard("medium");
+  
+  // පරිශීලක නාමය පරීක්ෂා කිරීම
   checkUsername();
-  renderUsernameInHeader();
+  
+  // ලීඩර්බෝර්ඩ් පෙන්වන්න
+  renderLeaderboard();
+  
+  // ක්‍රීඩා පුවරුව සෑදීම
+  createBoard("medium");
+  
+  // ශබ්ද පූර්ව ලෝඩ් කිරීම
   preloadAudio();
+  
+  // සම්භාව්‍ය මට්ටම පරීක්ෂා කිරීම
   checkClassicUnlock();
-}
+                 }
