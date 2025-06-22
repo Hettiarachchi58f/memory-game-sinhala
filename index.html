@@ -40,10 +40,11 @@
     
     <div class="branding">
       <img src="icon-192.png" alt="Game Logo" class="brand-logo">
-      <p class="version-info">අනුවාදය 8.1.8</p>
+      <p class="version-info">අනුවාදය 8.1.9</p>
     </div>
   </div>
 </div>
+
   <!-- Username Modal -->
   <div id="usernameModal" class="modal">
     <div class="modal-content">
@@ -52,6 +53,7 @@
       <button onclick="saveUsername()">සුරකින්න</button>
     </div>
   </div>
+
 <!-- Level Progress -->
 <div class="level-progress">
   <div class="level-info">
@@ -63,6 +65,11 @@
   </div>
   <div class="points-info">
     <span class="points-value">0</span>/<span class="points-total">10</span>
+  </div>
+  <!-- කාසි දර්ශකය ලෙවල් බාර් එකට එකතු කිරීම -->
+  <div class="coin-display">
+    <div class="coin-icon">🪙</div>
+    <span id="coinCount">0</span>
   </div>
 </div>
 
@@ -77,6 +84,30 @@
   </div>
 </div>
 
+<!-- Theme Shop Button -->
+<button id="themeShopBtn" class="theme-shop-btn">
+  <span>තේමා කඩදාසිය</span>
+  <span class="shop-icon">🛒</span>
+</button>
+
+<!-- Theme Shop Modal -->
+<div id="themeShopModal" class="modal">
+  <div class="modal-content">
+    <h3>තේමා කඩදාසිය</h3>
+    <div class="shop-header">
+      <div class="coin-balance">
+        <span>ඔබගේ කාසි:</span>
+        <span id="coinCountShop">0</span>
+        <span>🪙</span>
+      </div>
+    </div>
+    
+    <div id="themeShopItems" class="theme-shop-grid"></div>
+    
+    <button onclick="closeThemeShop()">වසන්න</button>
+  </div>
+</div>
+
 <!-- Assistant Instructions Modal -->
 <div id="assistantModal" class="modal">
   <div class="modal-content">
@@ -86,13 +117,11 @@
   </div>
 </div>
 
-<!-- නව ශබ්ද අංග -->
+<!-- ශබ්ද අංග -->
 <audio id="levelUpSound" src="level-up.mp3" preload="auto"></audio>
 <audio id="assistantSound" src="assistantSound.mp3" preload="auto"></audio>
 <audio id="timeSound" src="timeSound.mp3" preload="auto"></audio>
 <audio id="timeUpSound" src="time-up.mp3" preload="auto"></audio>
-
-<!-- පවතින ශබ්ද අංග -->
 <audio id="matchSound" src="match.mp3" preload="auto"></audio>
 <audio id="mismatchSound" src="mismatch.mp3" preload="auto"></audio>
 <audio id="winSound" src="win.mp3" preload="auto"></audio>
@@ -116,7 +145,7 @@
           <option value="easy">පහසු (4x2)</option>
           <option value="medium" selected>මධ්‍යම (4x4)</option>
           <option value="hard">උපරිම (6x4)</option>
-          <option value="classic">සම්භාව්‍ය (4x4)</option>
+          <option value="classic" class="classic-hidden">සම්භාව්‍ය (4x4)</option>
         </select>
       </div>
       <div class="control-group">
@@ -129,6 +158,9 @@
           <option value="vehicles">වාහන</option>
           <option value="sports">ක්‍රීඩා</option>
           <option value="foods">ආහාර</option>
+          <option value="flags">ජාතික කොඩි</option>
+          <option value="shapes">ජ්යාමිතික හැඩතල</option>
+          <option value="professions">රැකියා</option>
         </select>
       </div>
       <div class="control-group">
@@ -174,6 +206,10 @@
           <button class="win-button restart-btn" onclick="restartGame()">
             <span class="button-icon">↻</span>
             <span>නැවත ආරම්භ කරන්න</span>
+          </button>
+          <button class="win-button share-btn" onclick="shareScore()">
+            <span class="button-icon">↗️</span>
+            <span>බෙදාගන්න</span>
           </button>
         </div>
       </div>
@@ -225,7 +261,7 @@
         <p class="creator-title">Game developer</p>
       </div>
       <div class="version-info">
-        <p><span>අනුවාදය:</span> 8.1.8</p>
+        <p><span>අනුවාදය:</span> 8.1.9</p>
         <p><span>නිර්මාණ දිනය:</span> 2025</p>
         <p><span>තාක්ෂණය:</span> HTML5, CSS3, JavaScript</p>
       </div>
