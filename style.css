@@ -86,6 +86,7 @@ body {
   margin-bottom: 20px;
   padding: 10px;
   border-bottom: 2px solid var(--primary-light);
+  position: relative;
 }
 
 .header h1 {
@@ -350,6 +351,9 @@ input[type="range"]::-webkit-slider-thumb {
 
 .win-buttons {
   margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
 
 .win-button {
@@ -363,7 +367,6 @@ input[type="range"]::-webkit-slider-thumb {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0 auto;
   transition: all 0.3s;
   font-weight: bold;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -373,6 +376,15 @@ input[type="range"]::-webkit-slider-thumb {
   background-color: var(--primary-dark);
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Share Button */
+.share-btn {
+  background-color: #2196F3 !important;
+}
+
+.share-btn:hover {
+  background-color: #0b7dda !important;
 }
 
 /* Time Up Message */
@@ -976,6 +988,7 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   margin-bottom: 15px;
+  flex-wrap: wrap;
 }
 
 .level-info {
@@ -1002,6 +1015,8 @@ input[type="range"]::-webkit-slider-thumb {
   background-color: #e0e0e0;
   border-radius: 6px;
   overflow: hidden;
+  min-width: 100px;
+  margin: 0 10px;
 }
 
 .progress-fill {
@@ -1012,9 +1027,29 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .points-info {
-  margin-left: 15px;
+  margin: 0 10px;
   font-size: 0.9rem;
   color: var(--primary-dark);
+  white-space: nowrap;
+}
+
+/* කාසි දර්ශකය ලෙවල් බාර් එකට එකතු කිරීම */
+.coin-display {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(145deg, #FFC107, #FF9800);
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 30px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  min-width: 60px;
+  margin-left: auto;
+}
+
+.coin-icon {
+  font-size: 1.2rem;
+  margin-right: 5px;
 }
 
 /* Assistant Button */
@@ -1082,4 +1117,184 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: var(--border-radius);
   font-size: 1rem;
   line-height: 1.5;
+}
+
+/* තේමා කඩදාසිය බොත්තම */
+.theme-shop-btn {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background: linear-gradient(145deg, #FF5722, #E64A19);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 500;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.theme-shop-btn:hover {
+  transform: translateY(-3px);
+}
+
+.shop-icon {
+  font-size: 1.3rem;
+}
+
+/* තේමා කඩදාසිය මොඩලය */
+.theme-shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.theme-item {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+
+.theme-item.unlocked {
+  border-color: #4CAF50;
+}
+
+.theme-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.theme-icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.theme-item h4 {
+  font-size: 1rem;
+  margin: 10px 0;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.price {
+  display: block;
+  font-weight: bold;
+  color: #FF9800;
+  margin: 8px 0;
+}
+
+.unlock-badge {
+  display: block;
+  background: #4CAF50;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  margin: 8px 0;
+}
+
+.theme-item button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.theme-item button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.theme-item button:not(:disabled):hover {
+  background: var(--primary-dark);
+}
+
+.shop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.coin-balance {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background: rgba(255, 193, 7, 0.2);
+  padding: 8px 15px;
+  border-radius: 20px;
+}
+
+/* දිනපතා අභියෝග මෝස්තරය */
+.challenge-info {
+  background-color: var(--card-bg);
+  padding: 15px;
+  border-radius: var(--border-radius);
+  margin-top: 15px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--secondary-color);
+}
+
+.challenge-info h4 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.challenge-info p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+.challenge-info .completed {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.challenge-info .progress-bar {
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.challenge-info .progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FFC107, #FF9800);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+/* ප්‍රතිචාරී සැලසුම් */
+@media (max-width: 480px) {
+  .level-progress {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  
+  .coin-display {
+    margin-left: 0;
+    margin-top: 10px;
+    justify-content: center;
+  }
 }
